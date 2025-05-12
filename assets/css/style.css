@@ -462,38 +462,37 @@ body::before {
     }
 }
 
-/* 页脚样式 */
 .footer {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
-    /* 移除黑色背景 */
-    /* background-color: rgba(0, 0, 0, 0.7); */
-    color: #fff;
+    right: 0;
+    padding: 1rem;
     text-align: center;
-    padding: 10px 0;
-    font-size: 14px;
-    z-index: 100;
+    color: white;
+    /* 移除这行背景色设置 */
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    z-index: 10;
 }
 
 .footer-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 1rem;
 }
 
-.footer a {
-    color: #fff;
+.footer-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer-links a {
+    color: white;
     text-decoration: none;
-    transition: color 0.3s;
+    transition: opacity 0.3s ease;
 }
 
-.footer a:hover {
-    color: #ccc;
-}
-
-.footer i {
-    margin-right: 5px;
+.footer-links a:hover {
+    opacity: 0.8;
 }

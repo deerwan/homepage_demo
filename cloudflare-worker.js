@@ -84,24 +84,7 @@ async function handleRequest(request) {
     });
   }
   
-  // 处理一言API请求 (作为代理，避免前端跨域问题)
-  if (path === '/api/hitokoto') {
-    if (request.method === 'GET') {
-      try {
-        const response = await fetch('https://v1.hitokoto.cn');
-        const data = await response.json();
-        
-        return new Response(JSON.stringify(data), {
-          headers: corsHeaders
-        });
-      } catch (error) {
-        return new Response(JSON.stringify({ error: '获取一言失败' }), {
-          status: 500,
-          headers: corsHeaders
-        });
-      }
-    }
-  }
+
   
   // 处理留言板API
   if (path === '/api/messages') {

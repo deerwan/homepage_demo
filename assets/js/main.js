@@ -1,5 +1,5 @@
 // 设置Cloudflare Worker API的基础URL
-const API_BASE_URL = '替换为自己的Cloudflare Worker API的基础URL';
+const API_BASE_URL = 'https://替换为你的域名'; // 替换为你的API基础URL
 
 // 获取必应每日壁纸
 function getBingWallpaper() {
@@ -62,15 +62,7 @@ function setBackground() {
 
 // 获取一言
 async function getHitokoto() {
-  try {
-    const response = await fetch(`${API_BASE_URL}/api/hitokoto`);
-    if (!response.ok) throw new Error('获取一言失败');
-    
-    const data = await response.json();
-    $('.hitokoto-text').text(data.hitokoto);
-    $('.hitokoto-from').text(`- [${data.from}]`);
-  } catch (error) {
-    console.error('获取一言失败:', error);
+
     try {
       const directResponse = await fetch('https://v1.hitokoto.cn');
       const directData = await directResponse.json();
@@ -80,7 +72,7 @@ async function getHitokoto() {
       console.error('直接获取一言也失败:', directError);
     }
   }
-}
+
 
 // 格式化日期
 function formatDate(timestamp) {
@@ -128,15 +120,6 @@ $(document).ready(function() {
     // 初始化加载背景和一言
     getBingWallpaper(); // 使用必应壁纸
     getHitokoto();
-    
-    // 每天更新一次壁纸
-    const oneDayInMs = 24 * 60 * 60 * 1000;
-    setInterval(getBingWallpaper, oneDayInMs);
-    
-    // 每分钟更新一次一言
-    setInterval(getHitokoto, 60 * 1000);
-    
-    if ($('#guestbook').length) getMessages();
     
     // 处理留言板表单提交
     $('#guestbook-form').on('submit', async function(e) {
