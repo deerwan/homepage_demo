@@ -17,6 +17,7 @@ JavaScript构建前端，Cloudflare Worker作为后端API支
 - ☁️ 无服务器架构 - 基于Cloudflare Worker
 
 ## 📂 项目结构
+
 ```
 /
 ├── assets/
@@ -28,6 +29,7 @@ JavaScript构建前端，Cloudflare Worker作为后端API支
 ├── cloudflare-worker.js  # Cloudflare Worker后端
 └── index.html       # 主页面
 ```
+
 ## 🚀 快速开始
 
 ### 1. 部署Cloudflare Pages
@@ -40,13 +42,8 @@ JavaScript构建前端，Cloudflare Worker作为后端API支
    - 构建命令：留空
    - 输出目录：留空
 6. 点击「保存并部署」
+7. 绑定域名（可选）
 
-### 自定义域名设置
-
-1. 在项目部署完成后，进入「自定义域」标签
-2. 点击「设置自定义域」
-3. 输入你的域名，按提示完成 DNS 解析设置
-`
 ### 2. 部署Cloudflare Worker
 
 1. 注册 Cloudflare Workers 账号
@@ -60,17 +57,20 @@ JavaScript构建前端，Cloudflare Worker作为后端API支
 ### 3. 配置API
 
 修改API地址：
+
 ```
 // assets/js/main.js
 const API_BASE_URL = 'YOUR_WORKER_DOMAIN'; // 替换为您的Worker域名
-``
+```
 
 ### 4. 本地测试
 
 启动本地服务器：
+
 ```
 python -m http.server 8000
 ```
+
 访问 http://localhost:8000
 
 ## 🎨 自定义选项
@@ -134,4 +134,3 @@ MIT 许可证 - 详见 LICENSE 文件
 - jQuery - JavaScript库
 - Cloudflare Workers - 无服务器平台
 - 必应壁纸 - 每日精美背景
-    
