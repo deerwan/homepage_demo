@@ -1,1 +1,0 @@
-如果需要底色有噪点请将 overlay.png 放在 \images\文件夹下

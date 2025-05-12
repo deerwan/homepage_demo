@@ -1,242 +1,162 @@
-<!DOCTYPE HTML>
-<!--
-	Dimension by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>鹿人</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="icon" href="images/a_man_typing.png" type="image/png" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/custom.css" />
-		<link rel="stylesheet" href="assets/css/form-styles.css" />
-		<link rel="stylesheet" href="assets/css/message-wall.css" />
-		<link rel="stylesheet" href="assets/css/friend-links.css" />
-		<link rel="stylesheet" href="assets/css/url-input-styles.css" />
-		<link rel="stylesheet" href="assets/css/skills.css" />
-		<link rel="stylesheet" href="assets/css/weather.css" />
-		<!-- 注释掉下面这行则不显示鼠标指针特效 -->
-		<link rel="stylesheet" href="assets/css/cursor-styles.css" />
-		<!-- 注释掉下面这行则不显示字体特效 -->
-		<link rel="stylesheet" href="assets/css/font-effects.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
-
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Header -->
-					<header id="header">
-						<div class="logo">
-							<img src="images/a_person_sketching.png" alt="Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 100%;" />
-						</div>
-						<!-- FPS计数器已移除 -->
-						<div class="content">
-							<div class="inner">
-								<h1>鹿人</h1>
-								<p id="hitokoto">正在加载一言...</p>
-								<div id="weather-container" class="weather-container">
-									<p>正在获取天气信息...</p>
-								</div>
-							</div>
-						</div>
-						<nav>
-							<ul>
-								<li><a href="https://deerwan.github.io/">博客</a></li>
-								<li><a href="https://home.952780.xyz/">主页</a></li>
-								<li><a href="#about">关于</a></li>
-								<li><a href="#message-wall">留言</a></li>
-								<li><a href="#friend-links">友链</a></li>
-								<!--<li><a href="#elements">Elements</a></li>-->
-							</ul>
-						</nav>
-					</header>
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- About -->
-							<article id="about">
-								<h2 class="major">关于我</h2>
-								<p>欢迎来到我的个人主页！</p>
-
-								<h3>个人简介</h3>
-								<p>自由职业，对开源项目充满热情。偶尔写博客，也乐于参与技术社区讨论。</p>
-
-								<h3>业余技能</h3>
-								<div class="skill-tags">
-									<span class="skill-tag">JavaScript</span>
-									<span class="skill-tag">HTML/CSS</span>
-									<span class="skill-tag">React</span>
-									<span class="skill-tag">Node.js</span>
-									<span class="skill-tag">Linux</span>
-								</div>
-
-								<h3>兴趣爱好</h3>
-								<p>摄影，睡觉，自驾。</p>
-
-								<h2 class="major">联系我</h2>
-								<ul class="icons">
-									<li><a href="https://github.com/deerwan" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
-									<li><a href="mailto:739914756@qq.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-									<li><a href="https://www.zhihu.com/people/san-san-61-6" class="icon brands fa-zhihu" target="_blank"><span class="label">知乎</span></a></li>
-									<li><a href="https://zhiyou.smzdm.com/member/8735360783/" class="icon solid fa-tag" target="_blank"><span class="label">什么值得买</span></a></li>
-									<li><a href="https://qm.qq.com/cgi-bin/qm/qr?k=zTTTlwf4UfHZUQf3mJ5E4lfhEJv7TO6u&jump_from=webapi&authKey=nKkccmKpMCuhJuzNSzcjZyaLr6eIxeqDuCDJL6A3RQfUYEBV3bCE/lW/ABlq8hCq" class="icon brands fa-qq" target="_blank"><span class="label">QQ</span></a></li>
-									<li><a href="https://t.me/mrdeer7" class="icon brands fa-telegram" target="_blank"><span class="label">Telegram</span></a></li>
-								</ul>
-								<form method="POST" id="contact-form">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">姓名</label>
-											<input type="text" name="name" id="name" placeholder="请输入您的姓名" required />
-										</div>
-										<div class="field half">
-											<label for="email">邮箱</label>
-											<input type="email" name="email" id="email" placeholder="请输入您的邮箱" required />
-										</div>
-										<div class="field">
-											<label for="message">留言</label>
-											<textarea name="message" id="message" rows="4" placeholder="请输入您的留言内容..." required></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="发送消息" class="primary" /></li>
-										<li><input type="reset" value="重置" /></li>
-									</ul>
-								</form>
-							</article>
-
-						<!-- Message Wall -->
-							<article id="message-wall">
-								<h2 class="major">留言墙</h2>
-								<div class="message-wall-container">
-									<div id="message-list" class="message-list">
-										<!-- 留言将通过JavaScript动态加载到这里 -->
-										<div class="message-empty-notice">暂无留言，快来留下第一条吧！</div>
-									</div>
-									
-									<div class="message-form-container">
-										<h3>添加留言</h3>
-										<form id="message-form">
-											<div class="fields">
-												<div class="field half">
-													<label for="message-name">昵称</label>
-													<input type="text" name="message-name" id="message-name" placeholder="请输入您的昵称" required />
-												</div>
-												<div class="field half">
-													<label for="message-email">联系方式</label>
-													<input type="email" name="message-email" id="message-email" placeholder="请输入您的联系方式（不会公开）" required />
-												</div>
-												<div class="field">
-													<label for="message-content">留言内容</label>
-													<textarea name="message-content" id="message-content" rows="3" placeholder="请输入您的留言内容..." required></textarea>
-												</div>
-											</div>
-											<ul class="actions">
-												<li><input type="submit" value="发布留言" class="primary" /></li>
-												<li><input type="reset" value="重置" /></li>
-											</ul>
-										</form>
-									</div>
-								</div>
-							</article>
-
-						<!-- Friend Links -->
-							<article id="friend-links">
-								<h2 class="major">友情链接</h2>
-								<div class="friend-links-container">
-									<div class="friend-links-list" id="friend-links-list">
-										<!-- 友链列表 -->
-										<div class="friend-link-card">
-											<a href="https://linux.do/" target="_blank" rel="noopener noreferrer" class="friend-link-wrapper">
-												<div class="friend-link-avatar">
-													<img src="https://img.106996.xyz/file/favicon-linux.do-1-32x32.png" alt="LINUX DO" />
-												</div>
-												<div class="friend-link-name">LINUX DO</div>
-												<div class="friend-link-desc">新的理想型社区</div>
-											</a>
-										</div>
-									</div>
-
-									<div class="friend-link-form-container">
-										<h3>申请友链</h3>
-										<form id="friend-link-form">
-											<div class="fields">
-												<div class="field half">
-													<label for="friend-name">网站名称</label>
-													<input type="text" name="friend-name" id="friend-name" placeholder="请输入您的网站名称" required />
-												</div>
-												<div class="field half">
-													<label for="friend-url">网站地址</label>
-													<input type="url" name="friend-url" id="friend-url" placeholder="请输入您的网站地址" required />
-												</div>
-												<div class="field half">
-													<label for="friend-avatar">头像链接</label>
-													<input type="url" name="friend-avatar" id="friend-avatar" placeholder="请输入您的头像链接" />
-												</div>
-												<div class="field half">
-													<label for="friend-email">联系邮箱</label>
-													<input type="email" name="friend-email" id="friend-email" placeholder="请输入您的联系邮箱" required />
-												</div>
-												<div class="field">
-													<label for="friend-description">网站描述</label>
-													<textarea name="friend-description" id="friend-description" rows="2" placeholder="请简要描述您的网站..." required></textarea>
-												</div>
-											</div>
-											<ul class="actions">
-												<li><input type="submit" value="提交申请" class="primary" /></li>
-												<li><input type="reset" value="重置" /></li>
-											</ul>
-										</form>
-									</div>
-								</div>
-							</article>
-
-				</div>
-
-
-				<!-- Footer -->
-                    <footer id="footer">
-                        <p id="ip-info" class="copyright">正在获取IP信息...</p>
-                        <p class="copyright">
-                            <span id="busuanzi_container_site_pv">
-                                本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
-                            </span>
-                            <span id="busuanzi_container_site_uv">
-                                | 访客数 <span id="busuanzi_value_site_uv"></span> 人
-                            </span>
-                        </p>
-                        <p class="copyright">
-                            Deer &copy; 2025 
-                            <!-- 项目源码，欢迎魔改，但请保留原始项目地址 -->
-                            <a href="https://github.com/deerwan/homepage_demo" target="_blank">
-                            <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </p>
-                    </footer>
-                    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-			</div>
-
-		<!-- BG -->
-			<div id="bg"></div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/custom.js"></script>
-			<script src="assets/js/form-handler.js"></script>
-			<script src="assets/js/message-wall.js"></script>
-			<script src="assets/js/friend-link-handler.js"></script>
-			<script src="assets/js/url-input-handler.js"></script>
-		<script src="assets/js/weather.js"></script>
-
-	</body>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deer - Home</title>
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="logo">
+                <img src="assets/img/logo.png" alt="Deer">
+            </div>
+            <!-- <h1 class="title">Deer</h1> -->
+            <p class="subtitle">𝓗𝓲 👋, 𝓘'𝓶 𝓓𝓮𝓮𝓻</p>
+            <div class="hitokoto">
+                <p class="hitokoto-text">哪有什么岁月静好，不过是有人在替你负重前行。</p>
+                <p class="hitokoto-from">- [网络]</p>
+            </div>
+            <nav class="navigation">
+                <a href="#home" class="nav-item">首页</a>
+                <a href="https://deerwan.github.io" class="nav-item" target="_blank">博客</a>
+                <a href="#guestbook" class="nav-item">留言</a>
+                <a href="#about" class="nav-item">关于</a>
+            </nav>
+            <div class="social-links">
+                <a href="https://github.com/deerwan" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://deerwan.github.io" target="_blank" title="Blog">
+                    <i class="fas fa-blog"></i>
+                </a>
+                <a href="https://www.zhihu.com" target="_blank" title="知乎">
+                    <i class="fab fa-zhihu"></i>
+                </a>
+                <a href="mailto:your@email.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 关于页面 -->
+    <div id="about" class="section">
+        <div class="about-container">
+            <a href="#" class="back-btn"><i class="fas fa-arrow-left"></i> 返回</a>
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <div class="about-avatar">
+                    <img src="assets/img/logo.png" alt="个人头像">
+                </div>
+                <div class="about-info">
+                    <h3>个人简介</h3>
+                    <p>欢迎来到我的个人主页！我是一名热爱编程和技术的开发者，喜欢探索新技术和分享知识。</p>
+                    
+                    <h3>技能标签</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Python</span>
+                    </div>
+                    
+                    <h3>兴趣爱好</h3>
+                    <p>编程、阅读、摄影、旅行</p>
+                </div>
+            </div>
+            
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-form">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="您的姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="您的邮箱" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="4" placeholder="留言内容..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="submit-btn">发送消息</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 留言板 -->
+    <div id="guestbook" class="section">
+        <div class="about-container">
+            <a href="#" class="back-btn"><i class="fas fa-arrow-left"></i> 返回</a>
+            <h2 class="section-title">留言板</h2>
+            
+            <div class="guestbook-intro">
+                <p>欢迎在这里留下您的想法、建议或问候！</p>
+            </div>
+            
+            <div class="guestbook-form">
+                <form id="guestbook-form">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="您的昵称" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="您的邮箱（选填）">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="4" placeholder="留言内容..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="submit-btn">提交留言</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="guestbook-messages">
+                <h3>最新留言</h3>
+                <div class="message-list">
+                    <!-- 示例留言 -->
+                    <div class="message-item">
+                        <div class="message-header">
+                            <span class="message-author">访客</span>
+                            <span class="message-date">2023-06-15</span>
+                        </div>
+                        <div class="message-content">
+                            <p>这个网站设计得很漂亮，期待更多内容！</p>
+                        </div>
+                    </div>
+                    
+                    <div class="message-item">
+                        <div class="message-header">
+                            <span class="message-author">小明</span>
+                            <span class="message-date">2023-06-10</span>
+                        </div>
+                        <div class="message-content">
+                            <p>偶然发现这个网站，很喜欢这种简约的风格。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Deer &copy; 2025</p>
+            <!-- 项目源码，欢迎魔改，但请保留原始项目地址 -->
+            <a href="https://github.com/deerwan/homepage_demo" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+        </div>
+    </footer>
+    
+    <script src="lib/jquery.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
 </html>

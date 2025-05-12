@@ -1,404 +1,200 @@
-/*
-	Dimension by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
-
-(function($) {
-
-	var	$window = $(window),
-		$body = $('body'),
-		$wrapper = $('#wrapper'),
-		$header = $('#header'),
-		$footer = $('#footer'),
-		$main = $('#main'),
-		$main_articles = $main.children('article');
-
-	// Breakpoints.
-		breakpoints({
-			xlarge:   [ '1281px',  '1680px' ],
-			large:    [ '981px',   '1280px' ],
-			medium:   [ '737px',   '980px'  ],
-			small:    [ '481px',   '736px'  ],
-			xsmall:   [ '361px',   '480px'  ],
-			xxsmall:  [ null,      '360px'  ]
-		});
-
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
-
-	// Fix: Flexbox min-height bug on IE.
-		if (browser.name == 'ie') {
-
-			var flexboxFixTimeoutId;
-
-			$window.on('resize.flexbox-fix', function() {
-
-				clearTimeout(flexboxFixTimeoutId);
-
-				flexboxFixTimeoutId = setTimeout(function() {
-
-					if ($wrapper.prop('scrollHeight') > $window.height())
-						$wrapper.css('height', 'auto');
-					else
-						$wrapper.css('height', '100vh');
-
-				}, 250);
-
-			}).triggerHandler('resize.flexbox-fix');
-
-		}
-
-	// Nav.
-		var $nav = $header.children('nav'),
-			$nav_li = $nav.find('li');
-
-		// Removed middle alignment classes to eliminate vertical line
-			// if ($nav_li.length % 2 == 0) {
-			// 	$nav.addClass('use-middle');
-			// 	$nav_li.eq( ($nav_li.length / 2) ).addClass('is-middle');
-			// }
-			// If we have a middle link, add 'use-middle' class.
-			// if ($nav_li.length % 2 == 1) {
-			// 	$nav.addClass('use-middle');
-			// 	$nav_li.eq(Math.floor($nav_li.length / 2)).addClass('is-middle');
-			// }
-
-	// Main.
-		var	delay = 325,
-			locked = false;
-
-		// Methods.
-			$main._show = function(id, initial) {
-
-				var $article = $main_articles.filter('#' + id);
-
-				// No such article? Bail.
-					if ($article.length == 0)
-						return;
-
-				// Handle lock.
-
-					// Already locked? Speed through "show" steps w/o delays.
-						if (locked || (typeof initial != 'undefined' && initial === true)) {
-
-							// Mark as switching.
-								$body.addClass('is-switching');
-
-							// Mark as visible.
-								$body.addClass('is-article-visible');
-
-							// Deactivate all articles (just in case one's already active).
-								$main_articles.removeClass('active');
-
-							// Hide header, footer.
-								$header.hide();
-								$footer.hide();
-
-							// Show main, article.
-								$main.show();
-								$article.show();
-
-							// Activate article.
-								$article.addClass('active');
-
-							// Unlock.
-								locked = false;
-
-							// Unmark as switching.
-								setTimeout(function() {
-									$body.removeClass('is-switching');
-								}, (initial ? 1000 : 0));
-
-							return;
-
-						}
-
-					// Lock.
-						locked = true;
-
-				// Article already visible? Just swap articles.
-					if ($body.hasClass('is-article-visible')) {
-
-						// Deactivate current article.
-							var $currentArticle = $main_articles.filter('.active');
-
-							$currentArticle.removeClass('active');
-
-						// Show article.
-							setTimeout(function() {
-
-								// Hide current article.
-									$currentArticle.hide();
-
-								// Show article.
-									$article.show();
-
-								// Activate article.
-									setTimeout(function() {
-
-										$article.addClass('active');
-
-										// Window stuff.
-											$window
-												.scrollTop(0)
-												.triggerHandler('resize.flexbox-fix');
-
-										// Unlock.
-											setTimeout(function() {
-												locked = false;
-											}, delay);
-
-									}, 25);
-
-							}, delay);
-
-					}
-
-				// Otherwise, handle as normal.
-					else {
-
-						// Mark as visible.
-							$body
-								.addClass('is-article-visible');
-
-						// Show article.
-							setTimeout(function() {
-
-								// Hide header, footer.
-									$header.hide();
-									$footer.hide();
-
-								// Show main, article.
-									$main.show();
-									$article.show();
-
-								// Activate article.
-									setTimeout(function() {
-
-										$article.addClass('active');
-
-										// Window stuff.
-											$window
-												.scrollTop(0)
-												.triggerHandler('resize.flexbox-fix');
-
-										// Unlock.
-											setTimeout(function() {
-												locked = false;
-											}, delay);
-
-									}, 25);
-
-							}, delay);
-
-					}
-
-			};
-
-			$main._hide = function(addState) {
-
-				var $article = $main_articles.filter('.active');
-
-				// Article not visible? Bail.
-					if (!$body.hasClass('is-article-visible'))
-						return;
-
-				// Add state?
-					if (typeof addState != 'undefined'
-					&&	addState === true)
-						history.pushState(null, null, '#');
-
-				// Handle lock.
-
-					// Already locked? Speed through "hide" steps w/o delays.
-						if (locked) {
-
-							// Mark as switching.
-								$body.addClass('is-switching');
-
-							// Deactivate article.
-								$article.removeClass('active');
-
-							// Hide article, main.
-								$article.hide();
-								$main.hide();
-
-							// Show footer, header.
-								$footer.show();
-								$header.show();
-
-							// Unmark as visible.
-								$body.removeClass('is-article-visible');
-
-							// Unlock.
-								locked = false;
-
-							// Unmark as switching.
-								$body.removeClass('is-switching');
-
-							// Window stuff.
-								$window
-									.scrollTop(0)
-									.triggerHandler('resize.flexbox-fix');
-
-							return;
-
-						}
-
-					// Lock.
-						locked = true;
-
-				// Deactivate article.
-					$article.removeClass('active');
-
-				// Hide article.
-					setTimeout(function() {
-
-						// Hide article, main.
-							$article.hide();
-							$main.hide();
-
-						// Show footer, header.
-							$footer.show();
-							$header.show();
-
-						// Unmark as visible.
-							setTimeout(function() {
-
-								$body.removeClass('is-article-visible');
-
-								// Window stuff.
-									$window
-										.scrollTop(0)
-										.triggerHandler('resize.flexbox-fix');
-
-								// Unlock.
-									setTimeout(function() {
-										locked = false;
-									}, delay);
-
-							}, 25);
-
-					}, delay);
-
-
-			};
-
-		// Articles.
-			$main_articles.each(function() {
-
-				var $this = $(this);
-
-				// Close.
-					$('<div class="close">Close</div>')
-						.appendTo($this)
-						.on('click', function() {
-							location.hash = '';
-						});
-
-				// Prevent clicks from inside article from bubbling.
-					$this.on('click', function(event) {
-						event.stopPropagation();
-					});
-
-			});
-
-		// Events.
-			$body.on('click', function(event) {
-
-				// Article visible? Hide.
-					if ($body.hasClass('is-article-visible'))
-						$main._hide(true);
-
-			});
-
-			$window.on('keyup', function(event) {
-
-				switch (event.keyCode) {
-
-					case 27:
-
-						// Article visible? Hide.
-							if ($body.hasClass('is-article-visible'))
-								$main._hide(true);
-
-						break;
-
-					default:
-						break;
-
-				}
-
-			});
-
-			$window.on('hashchange', function(event) {
-
-				// Empty hash?
-					if (location.hash == ''
-					||	location.hash == '#') {
-
-						// Prevent default.
-							event.preventDefault();
-							event.stopPropagation();
-
-						// Hide.
-							$main._hide();
-
-					}
-
-				// Otherwise, check for a matching article.
-					else if ($main_articles.filter(location.hash).length > 0) {
-
-						// Prevent default.
-							event.preventDefault();
-							event.stopPropagation();
-
-						// Show article.
-							$main._show(location.hash.substr(1));
-
-					}
-
-			});
-
-		// Scroll restoration.
-		// This prevents the page from scrolling back to the top on a hashchange.
-			if ('scrollRestoration' in history)
-				history.scrollRestoration = 'manual';
-			else {
-
-				var	oldScrollPos = 0,
-					scrollPos = 0,
-					$htmlbody = $('html,body');
-
-				$window
-					.on('scroll', function() {
-
-						oldScrollPos = scrollPos;
-						scrollPos = $htmlbody.scrollTop();
-
-					})
-					.on('hashchange', function() {
-						$window.scrollTop(oldScrollPos);
-					});
-
-			}
-
-		// Initialize.
-
-			// Hide main, articles.
-				$main.hide();
-				$main_articles.hide();
-
-			// Initial article.
-				if (location.hash != ''
-				&&	location.hash != '#')
-					$window.on('load', function() {
-						$main._show(location.hash.substr(1), true);
-					});
-
-})(jQuery);
+// 设置Cloudflare Worker API的基础URL
+const API_BASE_URL = 'https://message-wall-api.952780.xyz';
+
+// 获取必应每日壁纸
+function getBingWallpaper() {
+    // 使用更可靠的必应壁纸API
+    const bingUrl = 'https://bing.img.run/rand.php';
+    
+    // 创建图片对象预加载
+    const img = new Image();
+    
+    // 图片加载成功后设置背景
+    img.onload = function() {
+        $('body').css({
+            'background-image': `url(${img.src})`,
+            'background-size': 'cover',
+            'background-position': 'center',
+            'background-repeat': 'no-repeat',
+            'background-attachment': 'fixed' // 添加固定背景，防止滚动时背景移动
+        });
+    };
+    
+    // 图片加载失败时的处理
+    img.onerror = function() {
+        console.error('获取必应壁纸失败');
+        // 使用备用API尝试
+        const backupUrl = 'https://api.dujin.org/bing/1920.php';
+        const backupImg = new Image();
+        
+        backupImg.onload = function() {
+            $('body').css({
+                'background-image': `url(${backupImg.src})`,
+                'background-size': 'cover',
+                'background-position': 'center',
+                'background-repeat': 'no-repeat',
+                'background-attachment': 'fixed'
+            });
+        };
+        
+        backupImg.onerror = function() {
+            console.error('备用API也失败，使用默认背景色');
+            setBackground();
+        };
+        
+        // 添加时间戳防止缓存
+        const timestamp = new Date().getTime();
+        backupImg.src = `${backupUrl}?t=${timestamp}`;
+    };
+
+    // 添加时间戳防止缓存
+    const timestamp = new Date().getTime();
+    img.src = `${bingUrl}?t=${timestamp}`;
+}
+
+// 设置固定背景色或图片
+function setBackground() {
+    $('body').css({
+        'background-color': '#121212', // 深色背景
+        'background-image': 'none'      // 移除背景图片
+    });
+}
+
+// 获取一言
+async function getHitokoto() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/hitokoto`);
+    if (!response.ok) throw new Error('获取一言失败');
+    
+    const data = await response.json();
+    $('.hitokoto-text').text(data.hitokoto);
+    $('.hitokoto-from').text(`- [${data.from}]`);
+  } catch (error) {
+    console.error('获取一言失败:', error);
+    try {
+      const directResponse = await fetch('https://v1.hitokoto.cn');
+      const directData = await directResponse.json();
+      $('.hitokoto-text').text(directData.hitokoto);
+      $('.hitokoto-from').text(`- [${directData.from}]`);
+    } catch (directError) {
+      console.error('直接获取一言也失败:', directError);
+    }
+  }
+}
+
+// 格式化日期
+function formatDate(timestamp) {
+  const date = new Date(timestamp);
+  return date.getFullYear() + '-' + 
+         String(date.getMonth() + 1).padStart(2, '0') + '-' + 
+         String(date.getDate()).padStart(2, '0');
+}
+
+// 创建留言HTML
+function createMessageHTML(message) {
+  return `
+    <div class="message-item">
+      <div class="message-header">
+        <span class="message-author">${message.name}</span>
+        <span class="message-date">${formatDate(message.timestamp)}</span>
+      </div>
+      <div class="message-content">
+        <p>${message.content}</p>
+      </div>
+    </div>
+  `;
+}
+
+// 获取留言列表
+async function getMessages() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/messages`);
+    if (!response.ok) throw new Error('获取留言失败');
+    
+    const messages = await response.json();
+    $('.message-list').empty();
+    
+    messages.forEach(message => {
+      $('.message-list').append(createMessageHTML(message));
+    });
+  } catch (error) {
+    console.error('获取留言失败:', error);
+    alert('获取留言失败，请稍后再试');
+  }
+}
+
+// 页面加载完成后执行
+$(document).ready(function() {
+    // 初始化加载背景和一言
+    getBingWallpaper(); // 使用必应壁纸
+    getHitokoto();
+    
+    // 每天更新一次壁纸
+    const oneDayInMs = 24 * 60 * 60 * 1000;
+    setInterval(getBingWallpaper, oneDayInMs);
+    
+    // 每分钟更新一次一言
+    setInterval(getHitokoto, 60 * 1000);
+    
+    if ($('#guestbook').length) getMessages();
+    
+    // 处理留言板表单提交
+    $('#guestbook-form').on('submit', async function(e) {
+      e.preventDefault();
+      
+      const name = $(this).find('input[name="name"]').val() || '访客';
+      const email = $(this).find('input[name="email"]').val();
+      const content = $(this).find('textarea[name="message"]').val();
+      
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/messages`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ name, email, content })
+        });
+        
+        if (!response.ok) throw new Error('提交留言失败');
+        
+        const result = await response.json();
+        $('.message-list').prepend(createMessageHTML(result));
+        
+        alert('留言提交成功！');
+        this.reset();
+      } catch (error) {
+        console.error('提交留言失败:', error);
+        alert('提交留言失败，请稍后再试');
+      }
+    });
+    
+    // 处理联系表单提交
+    $('#contact-form').on('submit', async function(e) {
+      e.preventDefault();
+      
+      const name = $(this).find('input[name="name"]').val();
+      const email = $(this).find('input[name="email"]').val();
+      const message = $(this).find('textarea[name="message"]').val();
+      
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/contact`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ name, email, message })
+        });
+        
+        if (!response.ok) throw new Error('提交联系表单失败');
+        
+        alert('感谢您的留言，我会尽快回复！');
+        this.reset();
+      } catch (error) {
+        console.error('提交联系表单失败:', error);
+        alert('提交联系表单失败，请稍后再试');
+      }
+    });
+    
+    // 处理返回按钮点击
+    $('.back-btn').on('click', function(e) {
+      e.preventDefault();
+      $('html, body').animate({scrollTop: 0}, 800);
+      window.location.href = window.location.pathname;
+    });
+});
