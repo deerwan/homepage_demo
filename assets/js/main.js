@@ -1,5 +1,5 @@
 // 设置Cloudflare Worker API的基础URL
-const API_BASE_URL = 'https://替换为你的域名'; // 替换为你的API基础URL
+const API_BASE_URL = '更换为自己的Cloudflare Worker API的基础URL'; //必填项
 
 // 获取必应每日壁纸
 function getBingWallpaper() {
@@ -120,6 +120,7 @@ $(document).ready(function() {
     // 初始化加载背景和一言
     getBingWallpaper(); // 使用必应壁纸
     getHitokoto();
+    getMessages(); // 添加这一行来加载留言
     
     // 处理留言板表单提交
     $('#guestbook-form').on('submit', async function(e) {
