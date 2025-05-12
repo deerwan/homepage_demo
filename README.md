@@ -63,15 +63,6 @@ JavaScript构建前端，Cloudflare Worker作为后端API支
 const API_BASE_URL = 'YOUR_WORKER_DOMAIN'; // 替换为您的Worker域名
 ```
 
-### 4. 本地测试
-
-启动本地服务器：
-
-```
-python -m http.server 8000
-```
-
-访问 http://localhost:8000
 
 ## 🎨 自定义选项
 
