@@ -1,20 +1,23 @@
 @font-face {
     font-family: '975MaruSC';
-    src: url('../fonts/975MaruSC-Regular.ttf') format('truetype');
+    src: url('../fonts/975MaruSC-Regular.woff2') format('woff2'),
+         url('../fonts/975MaruSC-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: '975MaruSC';
-    src: url('../fonts/975MaruSC-Medium.ttf') format('truetype');
+    src: url('../fonts/975MaruSC-Medium.woff2') format('woff2'),
+         url('../fonts/975MaruSC-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: '975MaruSC';
-    src: url('../fonts/975MaruSC-Bold.ttf') format('truetype');
+    src: url('../fonts/975MaruSC-Bold.woff2') format('woff2'),
+         url('../fonts/975MaruSC-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }

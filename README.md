@@ -9,7 +9,8 @@ JavaScript构建前端，Cloudflare Worker作为后端API支
 
 ## ✨ 功能特点
 
-- 📱 响应式设计 - 完美适配各种设备
+- 响应式设计 - 完美适配各种设备
+- ⚡ **性能优化** - 轻量化、快速加载，使用原生JS和优化资源
 - 🖼️ 动态背景 - 自动获取必应每日壁纸
 - 💬 一言功能 - 每日随机名言展示
 - 📝 留言板 - 访客互动交流
@@ -22,10 +23,9 @@ JavaScript构建前端，Cloudflare Worker作为后端API支
 /
 ├── assets/
 │   ├── css/         # 样式文件
-│   ├── fonts/       # 字体文件
-│   ├── img/         # 图片资源
-│   └── js/          # JavaScript文件
-├── lib/             # 第三方库
+│   ├── fonts/       # WOFF2 字体文件
+│   ├── img/         # 图片和 SVG 图标
+│   └── js/          # 原生 JavaScript 文件
 ├── cloudflare-worker.js  # Cloudflare Worker后端
 └── index.html       # 主页面
 ```
@@ -104,9 +104,9 @@ const API_BASE_URL = 'YOUR_WORKER_DOMAIN'; // 替换为您的Worker域名
 
 ## 🛠️ 技术栈
 
-- 前端：HTML5, CSS3, JavaScript, jQuery
+- 前端：HTML5, CSS3, 原生 JavaScript (ES6+)
 - 后端：Cloudflare Worker, KV Storage
-- 字体：975MaruSC
+- 字体：975MaruSC (已优化为 WOFF2 格式)
 
 ## 📜 许可证
 
@@ -122,6 +122,6 @@ MIT 许可证 - 详见 LICENSE 文件
 
 ## 🙏 致谢
 
-- jQuery - JavaScript库
-- Cloudflare Workers - 无服务器平台
+- Cloudflare - 提供强大的 Pages 和 Workers 平台
 - 必应壁纸 - 每日精美背景
+- 一言(Hitokoto) - 提供富有哲理的句子
