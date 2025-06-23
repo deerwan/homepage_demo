@@ -188,18 +188,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    const backBtn = document.querySelector('.back-btn');
-    if (backBtn) {
-        backBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            // 平滑滚动到页面顶部
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            // 使用 History API 清除 URL 中的哈希值，避免重新加载
-            if (window.history.pushState) {
-                window.history.pushState('', document.title, window.location.pathname + window.location.search);
-            } else {
-                window.location.href = window.location.pathname;
+    // 为所有弹出层（section）添加点击背景关闭的功能
+    document.querySelectorAll('.section').forEach(section => {
+        section.addEventListener('click', function(e) {
+            // 当点击事件的目标是 section 本身（即半透明的背景）时
+            if (e.target === this) {
+                // 通过将 hash 设置为空字符串来关闭当前 :target 激活的弹出层
+                // 这比直接修改 history state 更简单可靠
+                window.location.hash = '';
             }
         });
-    }
+    });
 });
