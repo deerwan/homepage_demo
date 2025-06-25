@@ -1,3 +1,7 @@
+# ⚠️ 正式版已发布！
+
+> 🚀 **正式版已发布于 [deerwan/homepage](https://github.com/deerwan/homepage)，请前往获取最新、完整、正式的个人主页项目。此仓库为演示/旧版。**
+
 # 个人主页演示
 
 ## 项目简介
