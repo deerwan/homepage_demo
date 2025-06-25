@@ -317,11 +317,12 @@ body::before {
 }
 
 .about-avatar img {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.5);
+    margin-bottom: 1rem;
+    /* border: 3px solid rgba(255, 255, 255, 0.8); */
+    transition: transform 0.3s ease;
 }
 
 .about-info {

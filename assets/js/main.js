@@ -70,7 +70,7 @@ async function getHitokoto() {
     } catch (directError) {
       console.error('直接获取一言也失败:', directError);
     }
-}
+  }
 
 // 格式化日期
 function formatDate(timestamp) {
@@ -134,60 +134,60 @@ document.addEventListener('DOMContentLoaded', function() {
     const guestbookForm = document.getElementById('guestbook-form');
     if (guestbookForm) {
         guestbookForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
+      e.preventDefault();
+      
             const name = this.querySelector('input[name="name"]').value || '访客';
             const email = this.querySelector('input[name="email"]').value;
             const content = this.querySelector('textarea[name="message"]').value;
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/messages`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ name, email, content })
-                });
-                
-                if (!response.ok) throw new Error('提交留言失败');
-                
-                const result = await response.json();
-                document.querySelector('.message-list').insertAdjacentHTML('afterbegin', createMessageHTML(result));
-                
-                alert('留言提交成功！');
-                this.reset();
-            } catch (error) {
-                console.error('提交留言失败:', error);
-                alert('提交留言失败，请稍后再试');
-            }
+      
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/messages`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ name, email, content })
         });
+        
+        if (!response.ok) throw new Error('提交留言失败');
+        
+        const result = await response.json();
+                document.querySelector('.message-list').insertAdjacentHTML('afterbegin', createMessageHTML(result));
+        
+        alert('留言提交成功！');
+        this.reset();
+      } catch (error) {
+        console.error('提交留言失败:', error);
+        alert('提交留言失败，请稍后再试');
+      }
+    });
     }
     
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
+      e.preventDefault();
+      
             const name = this.querySelector('input[name="name"]').value;
             const email = this.querySelector('input[name="email"]').value;
             const message = this.querySelector('textarea[name="message"]').value;
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/contact`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ name, email, message })
-                });
-                
-                if (!response.ok) throw new Error('提交联系表单失败');
-                
-                alert('感谢您的留言，我会尽快回复！');
-                this.reset();
-            } catch (error) {
-                console.error('提交联系表单失败:', error);
-                alert('提交联系表单失败，请稍后再试');
-            }
+      
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/contact`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ name, email, message })
         });
+        
+        if (!response.ok) throw new Error('提交联系表单失败');
+        
+        alert('感谢您的留言，我会尽快回复！');
+        this.reset();
+      } catch (error) {
+        console.error('提交联系表单失败:', error);
+        alert('提交联系表单失败，请稍后再试');
+      }
+    });
     }
-
+    
     // 为所有弹出层（section）添加点击背景关闭的功能
     document.querySelectorAll('.section').forEach(section => {
         section.addEventListener('click', function(e) {
